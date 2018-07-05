@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     
     @IBOutlet weak var firstNameTextField : UITextField!
     @IBOutlet weak var lastNameTextField : UITextField!
@@ -17,21 +17,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordTextField : UITextField!
     @IBOutlet weak var registerLabel : UILabel!
     
+    let viewModel = ViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindRegisterLabel()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func bindRegisterLabel() {
+        self.viewModel.state.bind { state in
+            switch state {
+            case .preregister :
+                self.registerLabel.text = "Registering..."
+            case .duringRegister :
+                self.registerLabel.text = "Magic Posting the user details"
+            case .postRegister :
+                self.registerLabel.text = "Registered!"
+            }
+        }
     }
+    
 }
 
 //MARK: Text Field Delegate Methods
 extension ViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let validatorMapping = [self.firstNameTextField : self.validateEmpty,self.lastNameTextField : self.validateEmpty,self.emailTextField:self.validateEmail,self.passwordTextField:self.validatePassword]
+        let validatorMapping = [self.firstNameTextField : self.viewModel.validateEmpty,self.lastNameTextField : self.viewModel.validateEmpty,self.emailTextField:self.viewModel.validateEmail,self.passwordTextField:self.viewModel.validatePassword]
         let validatorMethod = validatorMapping[textField]
         let validated = validatorMethod?(textField.text ?? "") ?? false
         if !validated {
@@ -46,48 +58,10 @@ extension ViewController : UITextFieldDelegate {
 
 extension ViewController {
     @IBAction func didTapDoneButton(sender : AnyObject?) {
-        
-        guard validate() else {
+        guard viewModel.validate() else {
             return
         }
-        let services = Services()
-        self.registerLabel.text = "Performing post magic to regsiter..."
-        services.postRegistrationDetails(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!) { [weak self] in
-            self?.registerLabel.text = "Registered!"
-        }
-    }
-    
-    private func validate() -> Bool {
-        let validatorMapping = [self.firstNameTextField : self.validateEmpty,self.lastNameTextField : self.validateEmpty,self.emailTextField:self.validateEmail,self.passwordTextField:self.validatePassword]
-        var validated = true
-        for (key,value) in validatorMapping {
-            if value(key.text ?? "") == false {
-                validated = false
-                key.shake()
-            }
-        }
-        return validated
-    }
-}
-
-//MARK: Validation Methods
-extension ViewController {
-    func validateEmpty(text : String) -> Bool {
-        return !text.isEmpty
-    }
-    
-    func validatePassword(text : String) -> Bool {
-        let passwordLength = text.count
-        if passwordLength < 6 {
-            return false
-        }
-        return true
-    }
-    
-    func validateEmail(text : String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: text)
+        viewModel.postUserDetails()
     }
 }
 
