@@ -12,7 +12,7 @@
 		694721BA20EB41A8008611B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 694721B820EB41A8008611B0 /* Main.storyboard */; };
 		694721BC20EB41A9008611B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 694721BB20EB41A9008611B0 /* Assets.xcassets */; };
 		694721BF20EB41A9008611B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 694721BD20EB41A9008611B0 /* LaunchScreen.storyboard */; };
-		694721CA20EB41AA008611B0 /* MVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721C920EB41AA008611B0 /* MVVMTests.swift */; };
+		694721CA20EB41AA008611B0 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721C920EB41AA008611B0 /* ViewModelTests.swift */; };
 		694721D520EB5C58008611B0 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721D420EB5C58008611B0 /* Services.swift */; };
 		694721D720EB5F36008611B0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721D620EB5F36008611B0 /* UIView.swift */; };
 		694721D920EB6930008611B0 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721D820EB6930008611B0 /* Box.swift */; };
@@ -38,7 +38,7 @@
 		694721BE20EB41A9008611B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		694721C020EB41A9008611B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		694721C520EB41AA008611B0 /* MVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		694721C920EB41AA008611B0 /* MVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMTests.swift; sourceTree = "<group>"; };
+		694721C920EB41AA008611B0 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		694721CB20EB41AA008611B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		694721D420EB5C58008611B0 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		694721D620EB5F36008611B0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		694721C820EB41AA008611B0 /* MVVMTests */ = {
 			isa = PBXGroup;
 			children = (
-				694721C920EB41AA008611B0 /* MVVMTests.swift */,
+				694721C920EB41AA008611B0 /* ViewModelTests.swift */,
 				694721CB20EB41AA008611B0 /* Info.plist */,
 			);
 			path = MVVMTests;
@@ -222,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				694721CA20EB41AA008611B0 /* MVVMTests.swift in Sources */,
+				694721CA20EB41AA008611B0 /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
